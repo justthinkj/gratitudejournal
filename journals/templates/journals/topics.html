@@ -1,0 +1,22 @@
+{% extends "journals/base.html" %}
+
+{% block header %}
+  <h1>Topics</h1>
+{% endblock header%}
+
+{% block content %}
+  <ul>
+  	{% for topic in topics %}
+  	  <li>
+  	  	<h3><a href="{% url 'journals:topic' topic.id %}">{{ topic }}</a></h3>
+  	  </li>
+  	  <!--<li>{{topic}}</li>-->
+  	<!-- what to do when the list is empty. -->
+  	{% empty %}
+  	  <li>No topics have been added yet.</li>
+  	{% endfor %}
+  </ul>
+
+  <h4><a href="{% url 'journals:new_topic' %}">Add a new topic</a></h4>
+
+{% endblock content %}  

@@ -1,0 +1,16 @@
+{% extends "journals/base.html" %}
+
+{% block header %}
+  <div class='jumbotron'>
+  	<h1>Journal for gratification, organizing thoughts, and tracking learning progress.</h1>
+  </div>
+{% endblock header %}
+
+{% block content %}
+  <h2>
+  	<a href="{% url 'users:register' %}">Register an account</a> to make your own journal for the topics you are interested in.
+  </h2>
+  <h2>
+  Write down one thing you are grateful about everyday.
+</h2>
+{% endblock content %}

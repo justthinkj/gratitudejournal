@@ -1,0 +1,3 @@
+This file ensures that gratitude_journal/static/ will be added to the project.(Since empty directories won't be included when pushed to Heroku.)
+
+Django will collect static files and place then in gratitude_journal/static.
