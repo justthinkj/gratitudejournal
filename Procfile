@@ -1,1 +1,1 @@
-web: gunicorn gratitude_journal.wsgi --log-file
+web: gunicorn gratitude_journal.wsgi --log-file -
