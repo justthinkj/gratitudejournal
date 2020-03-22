@@ -23,9 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'j@n#_i-j&xgve+d6szh6qje&^dzjso8=3d8)((*y0a+n(mu#mv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# When set to False, it will show the customized 404/500 error page
+# When set to True, it will show the standard 404/500 error page
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -61,7 +65,7 @@ ROOT_URLCONF = 'gratitude_journal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'gratitude_journal/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
