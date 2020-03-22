@@ -139,6 +139,8 @@ BOOTSTRAP3 = {
 
 # Heroku settings
 cwd = os.getcwd()
+
+# Make sure this applies only when the project is developed on Heroku
 if cwd == '/app' or cwd[:4] == '/tmp':
     import dj_database_url
     DATABASES = {
@@ -152,7 +154,9 @@ if cwd == '/app' or cwd[:4] == '/tmp':
         )
 
     # Allow all host headers.
-    ALLOWED_HOSTS = ['*']
+    ALLOWED_HOSTS = ['journals.herokuapp.com']
+
+    DEBUG = False
 
     # Static asset configuration
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
