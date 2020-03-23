@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -38,8 +38,9 @@ def topic(request, topic_id):
 	"""Show a single topic and all its entries."""
 
 	# DB QUERY
-	topic = Topic.objects.get(id=topic_id)
-	
+	#topic = Topic.objects.get(id=topic_id)
+	topic = get_object_or_404(Topic, id=topic_id)
+
 	# Raise 404 if user tries to access other user's topic
 	check_topic_owner(request, topic.owner)
 
@@ -77,7 +78,8 @@ def new_topic(request):
 @login_required
 def new_entry(request, topic_id):
 	"""Form to add a new entry for a particular topic."""
-	topic = Topic.objects.get(id=topic_id)
+	# topic = Topic.objects.get(id=topic_id)
+	topic = get_object_or_404(Topic, id=topic_id)
 
 	check_topic_owner(request, topic.owner)
 
@@ -99,7 +101,8 @@ def new_entry(request, topic_id):
 @login_required
 def edit_entry(request, entry_id):
 	"""Edit an existing entry."""
-	entry = Entry.objects.get(id = entry_id)
+	# entry = Entry.objects.get(id = entry_id)
+	entry = get_object_or_404(Entry, id=entry_id)
 	topic = entry.topic
 
 	check_topic_owner(request, topic.owner)
