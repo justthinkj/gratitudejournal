@@ -5,10 +5,6 @@
 {% endblock header%}
 
 {% block content %}
-  <p>
-  	<a href="{% url 'journals:new_entry' topic.id %}">add new entry</a>
-  </p>
-
 
   {% for entry in entries %}
 	<div class="panel panel-default"><div class="panel-heading">

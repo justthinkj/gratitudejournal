@@ -25,7 +25,7 @@ SECRET_KEY = 'j@n#_i-j&xgve+d6szh6qje&^dzjso8=3d8)((*y0a+n(mu#mv'
 # SECURITY WARNING: don't run with debug turned on in production!
 # When set to False, it will show the customized 404/500 error page
 # When set to True, it will show the standard 404/500 error page
-DEBUG = True
+DEBUG = False
 
 #ALLOWED_HOSTS = []
 
