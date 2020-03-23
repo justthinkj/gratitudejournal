@@ -158,7 +158,7 @@ if cwd == '/app' or cwd[:4] == '/tmp':
         )
 
     # Allow all host headers.
-    ALLOWED_HOSTS = ['journals.herokuapp.com']
+    ALLOWED_HOSTS = ['gratitude-journals.herokuapp.com']
 
     DEBUG = False
 
