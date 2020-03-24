@@ -17,6 +17,7 @@ class Topic(models.Model):
 	owner = models.ForeignKey(
 		User,
 		on_delete=models.CASCADE)
+	public = models.BooleanField(default=False)
 
 	def __str__(self):
 		"""Return a string representation of the model."""
