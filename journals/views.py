@@ -6,11 +6,12 @@ from django.contrib.auth.decorators import login_required
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 
+from django.db.models import Q
 
 # methods
-def check_topic_owner(request, owner):
+def check_topic_owner(request, topic):
 	"""Check if the current user is the topic owner and raise 404 if not."""
-	if request.user != owner:
+	if request.user != topic.owner and topic.public == False:
 		raise Http404
 
 
@@ -28,7 +29,8 @@ def info(request):
 @login_required
 def topics(request):
 	"""The topics page."""
-	topics = Topic.objects.filter(owner=request.user).order_by('date_added')
+	topics = Topic.objects.filter(
+		Q(owner=request.user) | Q(public=True)).order_by('date_added')
 	context = {'topics':topics}
 	return render(request, 'journals/topics.html', context)
 
@@ -42,7 +44,7 @@ def topic(request, topic_id):
 	topic = get_object_or_404(Topic, id=topic_id)
 
 	# Raise 404 if user tries to access other user's topic
-	check_topic_owner(request, topic.owner)
+	check_topic_owner(request, topic)
 
 	# DB QUERY
 	# use entry with _set to get all the objects associated 
@@ -81,7 +83,7 @@ def new_entry(request, topic_id):
 	# topic = Topic.objects.get(id=topic_id)
 	topic = get_object_or_404(Topic, id=topic_id)
 
-	check_topic_owner(request, topic.owner)
+	check_topic_owner(request, topic)
 
 	if request.method != 'POST':
 		form = EntryForm()
@@ -105,7 +107,7 @@ def edit_entry(request, entry_id):
 	entry = get_object_or_404(Entry, id=entry_id)
 	topic = entry.topic
 
-	check_topic_owner(request, topic.owner)
+	check_topic_owner(request, topic)
 
 	if request.method != 'POST':
 		# Initial request; pre-fill form with the current entry
