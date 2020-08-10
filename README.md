@@ -1,2 +1,2 @@
 # gratitudejournal
-A website for keeping a gratitude journal built using Django
+A Django based website for keeping a gratitude journal built
